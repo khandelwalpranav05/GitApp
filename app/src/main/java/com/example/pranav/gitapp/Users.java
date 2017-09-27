@@ -19,9 +19,9 @@ public class Users {
 
     @SerializedName("id")
     @Expose
-    private int id;
+    private Integer id;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

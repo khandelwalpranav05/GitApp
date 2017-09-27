@@ -27,24 +27,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         userList = (RecyclerView) findViewById(R.id.userList);
-        GitAdapter = new UserAdapter(userArrayList, this);
+
+        GitAdapter = new UserAdapter(userArrayList,this);
 
         UserApi userApi = new UserApi();
-        userApi.getUserListGET().getUserList().enqueue(new Callback<ArrayList<Users>>() {
+        userApi.getUserListGET().getUserList().enqueue(new Callback<UserList>() {
             @Override
-            public void onResponse(Call<ArrayList<Users>> call, Response<ArrayList<Users>> response) {
+            public void onResponse(Call<UserList> call, Response<UserList> response) {
 
-                GitAdapter.setUsers(response.body());
+                for(Users user : response.body().getItems() ){
+                    user.getLogin();
+                    user.getAvatar();
+                    userArrayList.add(user);
+                }
+                GitAdapter.notifyDataSetChanged();
+
             }
 
             @Override
-            public void onFailure(Call<ArrayList<Users>> call, Throwable t) {
+            public void onFailure(Call<UserList> call, Throwable t) {
 
-                Log.e("TAG", "onFailure: " + t.getLocalizedMessage());
-                Toast.makeText(MainActivity.this, "No!", Toast.LENGTH_SHORT).show();
+                Log.e("OnFailure","Didn't work");
             }
         });
-
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 2);
         userList.setLayoutManager(layoutManager);
         userList.setAdapter(GitAdapter);

@@ -12,5 +12,5 @@ import retrofit2.http.GET;
 public interface UserClient {
 
     @GET("search/users?q=pranav")
-    Call<ArrayList<Users>> getUserList();
+    Call<UserList> getUserList();
 }

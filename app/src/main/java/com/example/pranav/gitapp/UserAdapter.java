@@ -31,14 +31,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater li = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+       // context=parent.getContext();
         View view = li.inflate(R.layout.user_view, parent, false);
 
+       // UserAdapter.ViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.user_view,parent,false));
         return new ViewHolder(view);
-    }
-
-    public void setUsers(ArrayList<Users> users) {
-        this.user = users;
-        notifyDataSetChanged();
     }
 
     @Override
@@ -46,7 +43,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
         Users currentUser = user.get(position);
 
-        holder.userID.setText(currentUser.getId());
+        holder.userID.setText((currentUser.getId().toString()));
         holder.login.setText(currentUser.getLogin());
 
         String userPic = currentUser.getAvatar();
