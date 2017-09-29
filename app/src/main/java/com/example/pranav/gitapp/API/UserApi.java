@@ -17,4 +17,14 @@ public class UserApi {
 
         return retrofit.create(UserClient.class);
     }
+
+    public SingleUserClient getSingleUserProfile()
+    {
+        String BASE_URL = "https://api.github.com";
+
+        Retrofit retrofit = new Retrofit.Builder().baseUrl(BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
+
+        return retrofit.create(SingleUserClient.class);
+    }
+
 }

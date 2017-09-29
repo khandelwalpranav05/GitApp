@@ -1,6 +1,7 @@
 package com.example.pranav.gitapp.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.pranav.gitapp.Activities.MainActivity;
+import com.example.pranav.gitapp.Activities.SingleUsernameActivity;
 import com.example.pranav.gitapp.Model.Users;
 import com.example.pranav.gitapp.R;
 import com.squareup.picasso.Picasso;
@@ -42,15 +44,24 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(final ViewHolder holder, int position) {
 
-        Users currentUser = user.get(position);
+        final Users currentUser = user.get(position);
 
         holder.userID.setText((currentUser.getId().toString()));
         holder.login.setText(currentUser.getLogin());
 
-        String userPic = currentUser.getAvatar();
+        final String userPic = currentUser.getAvatar();
         Glide.with(context).load(userPic).into(holder.urlImage);
+
+        holder.urlImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, SingleUsernameActivity.class);
+                i.putExtra("PicUrl",userPic);
+                i.putExtra("UserID",currentUser.getId());
+            }
+        });
 
     }
 
