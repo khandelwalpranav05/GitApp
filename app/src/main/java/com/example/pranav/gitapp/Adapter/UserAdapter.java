@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.pranav.gitapp.Activities.MainActivity;
 import com.example.pranav.gitapp.Model.Users;
 import com.example.pranav.gitapp.R;
 import com.squareup.picasso.Picasso;
@@ -48,7 +50,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         holder.login.setText(currentUser.getLogin());
 
         String userPic = currentUser.getAvatar();
-        Picasso.with(context).load(userPic).fit().into(holder.urlImage);
+        Glide.with(context).load(userPic).into(holder.urlImage);
 
     }
 
