@@ -1,15 +1,18 @@
-package com.example.pranav.gitapp;
+package com.example.pranav.gitapp.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.ListView;
-import android.widget.Toast;
+
+import com.example.pranav.gitapp.R;
+import com.example.pranav.gitapp.Adapter.UserAdapter;
+import com.example.pranav.gitapp.API.UserApi;
+import com.example.pranav.gitapp.Model.UserList;
+import com.example.pranav.gitapp.Model.Users;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -26,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String getSearchedValue = getIntent().getStringExtra("SearchedValue");
+
         userList = (RecyclerView) findViewById(R.id.userList);
 
         GitAdapter = new UserAdapter(userArrayList,this);
 
         UserApi userApi = new UserApi();
-        userApi.getUserListGET().getUserList().enqueue(new Callback<UserList>() {
+        userApi.getUserListGET().getUserList(getSearchedValue).enqueue(new Callback<UserList>() {
             @Override
             public void onResponse(Call<UserList> call, Response<UserList> response) {
 

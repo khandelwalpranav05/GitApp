@@ -1,7 +1,6 @@
-package com.example.pranav.gitapp;
+package com.example.pranav.gitapp.Adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.pranav.gitapp.Model.Users;
+import com.example.pranav.gitapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package com.example.pranav.gitapp;
+package com.example.pranav.gitapp.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

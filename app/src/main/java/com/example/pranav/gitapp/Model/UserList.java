@@ -1,4 +1,6 @@
-package com.example.pranav.gitapp;
+package com.example.pranav.gitapp.Model;
+
+import com.example.pranav.gitapp.Model.Users;
 
 import java.util.ArrayList;
 
